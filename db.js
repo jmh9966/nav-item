@@ -6,6 +6,7 @@ const config = require("./config");
 const pool = createPool({
   host: config.mysql.host,
   user: config.mysql.user,
+  port: process.env.MYSQL_PORT || 3306,
   password: config.mysql.password,
   database: config.mysql.database,
   waitForConnections: true,
@@ -283,3 +284,4 @@ async function getMenuId(name) {
 }
 
 module.exports = pool;
+
