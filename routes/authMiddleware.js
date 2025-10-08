@@ -1,19 +1,26 @@
-const jwt = require('jsonwebtoken');
-const JWT_SECRET = 'your_jwt_secret_key';
+const jwt = require("jsonwebtoken");
+const config = require("../config");
+const JWT_SECRET = config.server.jwtSecret;
 
 function authMiddleware(req, res, next) {
-  const auth = req.headers.authorization;
-  if (!auth || !auth.startsWith('Bearer ')) {
-    return res.status(401).json({ error: '未授权' });
+  const authHeader = req.headers["authorization"];
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    return res.status(401).json({ error: "未找到认证令牌" });
   }
-  const token = auth.slice(7);
+
+  const token = authHeader.split(" ")[1];
   try {
-    const payload = jwt.verify(token, JWT_SECRET);
-    req.user = payload;
+    const decoded = jwt.verify(token, JWT_SECRET);
+    // 确保用户对象中包含 id 字段
+    if (!decoded || !decoded.uid) {
+      throw new Error("无效的 JWT 令牌");
+    }
+    req.user = { id: decoded.uid }; // 严格提取需要的字段
     next();
-  } catch (e) {
-    return res.status(401).json({ error: '无效token' });
+  } catch (error) {
+    console.error("认证失败:", error.message);
+    return res.status(401).json({ error: "无效或过期的令牌" });
   }
 }
 
-module.exports = authMiddleware; 
+module.exports = authMiddleware;

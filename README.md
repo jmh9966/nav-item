@@ -1,11 +1,22 @@
+---
+title: Nav
+emoji: 🦀
+colorFrom: purple
+colorTo: yellow
+sdk: docker
+pinned: false
+short_description: 一个现代化的导航网站项目，提供简洁美观的导航界面和强大的后台管理系统,快速访问常用网站和工具
+app_port: 3000
+---
+
 # Nav-item - 个人导航站
 
 ## 项目简介
 
-一个现代化的导航网站项目，提供简洁美观的导航界面和强大的后台管理系统,快速访问常用网站和工具。
+一个现代化的导航网站项目，提供简洁美观的导航界面和强大的后台管理系统,快速访问常用网站和工具,代码来源于[eooce](https://github.com/eooce),在此基础上将SQLite改为MYSQL持久化
 
 ## 🛠️ 技术栈
-- Vue 3 + Node.js + SQLite 前后端分离架构
+- Vue 3 + Node.js +MYSQL 前后端分离架构
 
 ## ✨ 主要功能
 
@@ -83,25 +94,32 @@ nav-item/
 ## ⚙️ 环境变量及配置说明
 
 ### 环境变量
-- `PORT`: 服务器端口号（默认: 3000）
-- `ADMIN_USERNAME`: 管理员用户名（默认: admin）
-- `ADMIN_PASSWORD`: 管理员密码（默认: 123456）
+|     变量名     |           变量值            | 非空  |
+| :------------: | :-------------------------: | :---: |
+|      PORT      | 服务器端口号（默认: 3000）  | FALSE |
+| ADMIN_USERNAME | 管理员用户名（默认: admin） | FALSE |
+| ADMIN_PASSWORD | 管理员密码（默认: 123456）  | FALSE |
+|   JWT_SECRET   |          令牌密钥           | FALSE |
+|   MYSQL_HOST   |        MYSQL主机地址        | TRUE  |
+|   MYSQL_USER   |         MYSQL用户名         | TRUE  |
+| MYSQL_PASSWORD |         数据库密码          | TRUE  |
+| MYSQL_DATABASE |          数据库名           | TRUE  |
 
-### 数据库配置
-系统使用 SQLite 数据库，数据库文件会自动创建在项目/database/目录下，使用docker部署请挂载/app/database目录实现数据持久化
-```
+
 
 ## 🚀 部署指南
 
 ### 源代码部署
 
 #### 1. 克隆项目
+
 ```bash
 git clone https://github.com/eooce/nav-Item.git
 cd nav-item
 ```
 
 #### 2. 安装后端依赖
+
 ```bash
 npm install
 ```
@@ -186,4 +204,3 @@ ghcr.io/eooce/nav-item:latest
 ---
 
 ⭐ 如果这个项目对你有帮助，请给它一个星标！ 
-

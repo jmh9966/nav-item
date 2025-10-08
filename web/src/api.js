@@ -5,7 +5,10 @@ export const login = (username, password) => axios.post(`${BASE}/login`, { usern
 
 function authHeaders() {
   const token = localStorage.getItem('token');
-  return token ? { Authorization: `Bearer ${token}` } : {};
+  return {
+    ... (token ? { 'Authorization': `Bearer ${token}` } : {}),
+    'Content-Type': 'application/json', // 强制添加 JSON 头
+  };
 }
 
 // 菜单相关API

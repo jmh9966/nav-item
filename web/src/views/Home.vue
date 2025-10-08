@@ -147,7 +147,7 @@ const searchEngines = [
   },
   {
     name: 'github',
-    label: 'github',
+    label: 'GitHub',
     placeholder: 'GitHub 搜索...',
     url: q => `https://github.com/search?q=${encodeURIComponent(q)}&type=repositories`
   },

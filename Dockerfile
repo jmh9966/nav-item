@@ -33,5 +33,8 @@ COPY --from=frontend-builder /app/dist ./web/dist
 ENV NODE_ENV=production
 
 EXPOSE 3000/tcp
+RUN chmod -R 777 /app
+RUN chown -R root:root /app
+RUN chmod -R 777 database
 
 CMD ["npm", "start"] 
