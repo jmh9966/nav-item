@@ -1,0 +1,11 @@
+# Vim 交换文件
+*.swp
+.*.swp
+*.swo
+.*.swo
+
+# Neovim 交换文件
+*.swp
+*.swo
+*~
+.*.sw?
