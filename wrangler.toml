@@ -1,0 +1,21 @@
+# wrangler.toml
+name = "nav"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+# 📦 Pages 构建配置
+pages_build_output_dir = "web/dist"
+
+# D1 数据库绑定 [[4]]
+[[d1_databases]]
+binding = "nav_db"
+database_name = "nav-db"
+database_id = "7fbc2cfd-acb0-49bf-9d2c-d6c3c94629e1"
+preview_database_id = "local-db"
+
+# 环境变量
+[vars]
+ADMIN_USERNAME = "admin"
+
+# 生产环境密钥 (使用 secrets 管理)
+# wrangler pages secret put JWT_SECRET --env production

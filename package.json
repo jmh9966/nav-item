@@ -1,0 +1,17 @@
+{
+  "name": "nav-item-backend",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "wrangler pages dev",
+    "build": "cd web && npm run build && cd ..",
+    "deploy:cf": "npm run build && npx wrangler pages deploy web/dist --project-name=nav --yes",
+    "deploy:backend": "wrangler deploy --env production"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "engines": {
+    "node": ">=18.17.1"
+  }
+}
